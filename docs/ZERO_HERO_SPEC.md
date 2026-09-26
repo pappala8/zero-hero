@@ -4,7 +4,7 @@
 
 This document defines the initial system contract for Zero Hero (ZH), an automated intraday NIFTY 50 option-buying research and trading system. It is a specification foundation, not an implementation or a statement that the strategy is profitable.
 
-The current stage is documentation and research preparation. No broker connection, live order placement, historical-data purchase, or strategy implementation is authorized by this document.
+Current implementation status: research-engineering scaffolding is implemented through the strategy/paper-trading and data/QC layers, but the system has not passed the historical-data QC/release gate and is not approved for backtesting, optimization, broker integration, or live deployment. Strategy Engine V0.1 is an implementation of the documented research hypothesis and must remain configurable and uncalibrated until evidence supports any parameter selection. This document governs behavior; implementation does not imply validation or profitability.
 
 ## Requirement Classification
 
@@ -135,4 +135,4 @@ Any change to market logic, score components, risk controls, data assumptions, o
 
 ## Deferred Work
 
-Broker integration, paper trading, live deployment, monitoring automation, and production parameter selection are deferred until the development phases in `DEVELOPMENT_PLAN.md` have been completed with documented evidence.
+Broker integration, live deployment, monitoring automation, and production parameter selection remain deferred until the applicable development phases in `DEVELOPMENT_PLAN.md` have been completed with documented evidence. Paper-trading infrastructure exists for controlled replay/stream testing, but paper trading does not constitute validation or authorization for live orders.

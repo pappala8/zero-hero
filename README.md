@@ -4,9 +4,9 @@ Zero Hero is a research-first system for automated intraday NIFTY 50 option buyi
 
 ## Current Stage
 
-The repository is currently in the documentation and research-foundation stage. The system specifications, mathematical definitions, data requirements, QC contract, development sequence, and agent guardrails are being established before Python implementation.
+The repository is in the research-engineering stage. The system specifications, mathematical definitions, data requirements, QC contract, strategy/paper-trading scaffolding, normalized-data layer, and release infrastructure are implemented and under test.
 
-No strategy implementation, broker connection, order placement, historical-data purchase, or live deployment is included at this stage. Numerical thresholds remain research parameters until validated.
+The current implementation includes a research-only Strategy Engine V0.1, paper-trading/ledger infrastructure, provider-neutral normalization/QC, and a sample-data adapter. There is no broker connection, live order placement, or production deployment. Numerical thresholds remain research parameters until validated.
 
 ## Architecture
 
@@ -34,3 +34,14 @@ Secrets, credentials, access tokens, and proprietary raw datasets must stay outs
 - [Data QC specification](docs/DATA_QC_SPEC.md)
 - [Development plan](docs/DEVELOPMENT_PLAN.md)
 - [Copilot instructions](.github/copilot-instructions.md)
+
+
+## Current paper-risk contract
+
+Position sizing derives stop risk from the selected option's causal delta/gamma and the structural opening-range stop. Caller-supplied `stop_risk_per_unit` is deprecated and ignored. The approximation is explicitly versioned as `DELTA_GAMMA_STRUCTURAL_STOP_V1`; missing delta fails closed. Structural-stop exit decisions are derived from causal underlying bars, not caller boolean flags.
+
+The paper journal uses an append-only hash chain and the stored-session wrapper rolls back in-memory state if durable journal append fails.
+
+### P1-G final remediation
+
+The current snapshot includes transactional journal rollback, bounded streaming dataset release, and a derived stop-risk API. See `docs/P1G_FINAL_REMEDIATION.md`.

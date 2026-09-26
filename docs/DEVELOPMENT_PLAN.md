@@ -2,19 +2,28 @@
 
 ## Guiding Constraints
 
+## Current Project Status
+
+The repository has implemented research-engineering scaffolding across the strategy, paper-trading, normalization, QC, release, and sample-adapter layers. The current gate is not complete: the real sample does not yet have a QC-approved normalized release, and documentation/release evidence must remain aligned with the implementation. Strategy Engine V0.1 and paper-trading components are implementation scaffolding, not calibrated or validated trading rules. No backtest, optimization, broker integration, or live deployment is authorized by the current state.
+
+**Current next work:** complete P0 QC/release/documentation reconciliation, then address the remaining causal strategy/risk semantics and tests before historical backtesting.
+
+
 This plan sequences research before automation. No phase authorizes live orders by itself. The project must preserve causal signals, reproducible backtests, explicit assumptions, and separation between research/backtest and live execution.
 
 Numerical thresholds are research parameters until empirical validation. No historical data will be downloaded or purchased as part of this documentation task.
 
+- P1-D paper risk/exit semantics implemented: structural stop is derived from the entry OR boundary and stored with the position; stop exits use observed underlying bars; gap-through-stop exits use the observed option price rather than a synthetic stop price; option exit prices must be causal and contract-matched; exit precedence remains explicit.
+
 ## Phase 0: Repository and Environment
 
-Confirm the existing architecture, runtime policy, dependency policy, test strategy, configuration approach, secret handling, and reproducible environment. Do not add strategy or broker code in this phase.
+Confirm the existing architecture, runtime policy, dependency policy, test strategy, configuration approach, secret handling, and reproducible environment. This phase is complete for the current repository baseline; later implementation is governed by the subsequent phases and gates.
 
 **Exit evidence:** documented environment and repository checks; no secrets committed.
 
 ## Phase 1: Specifications
 
-Complete and review the system, mathematical, data, QC, and development specifications. Resolve terminology, causal timing, fixed requirements, hypotheses, configurable parameters, and deferred features.
+Complete and review the system, mathematical, data, QC, and development specifications. Resolve terminology, causal timing, fixed requirements, hypotheses, configurable parameters, and deferred features. Reconcile documentation with the implementation status and preserve explicit phase gates.
 
 **Exit evidence:** approved documentation with no unresolved architectural contradiction.
 

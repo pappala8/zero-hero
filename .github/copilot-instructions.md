@@ -7,7 +7,7 @@ Before coding, read the relevant documents in `docs/`, especially `ZERO_HERO_SPE
 - Never silently change trading rules, risk controls, data assumptions, or execution semantics.
 - Treat numerical thresholds as research ranges unless a document explicitly marks them fixed.
 - Never optimize strategy parameters without an explicit research task and validation plan.
-- Follow the phase sequence defined in `docs/DEVELOPMENT_PLAN.md`. Do not implement work belonging to a later phase before the current phase's documented exit evidence is satisfied. In particular, do not implement strategy, backtesting, broker integration, or live execution merely because it appears technically possible.
+- Follow the phase sequence defined in `docs/DEVELOPMENT_PLAN.md`. The repository already contains research-engineering scaffolding implemented across the strategy, paper-trading, normalization, QC, and release layers; do not interpret that implementation as phase-gate approval. Do not add backtesting, broker integration, or live execution until the documented prerequisite gates are satisfied.
 - Use only information available at the signal timestamp; do not introduce look-ahead or survivorship bias.
 - Keep backtest and research isolated from live execution. Never connect research code to live order execution or place broker orders from a backtest.
 - Write tests for non-trivial logic, especially time alignment, contract identity, QC, fills, risk, and causal signal behavior.

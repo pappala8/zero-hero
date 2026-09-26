@@ -33,6 +33,7 @@ logs/
 # Raw and proprietary datasets
 data/raw/
 data/rejected/
+data/samples/
 *.csv
 *.csv.gz
 *.parquet
